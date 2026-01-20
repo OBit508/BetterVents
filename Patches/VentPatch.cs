@@ -1,5 +1,6 @@
 ﻿using BetterVents.Components;
 using HarmonyLib;
+using Il2CppInterop.Runtime.InteropTypes.Arrays;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,13 +21,11 @@ namespace BetterVents.Patches
             {
                 return;
             }
-            if (VentHelper.ArrowPrefab == null)
-            {
-                VentHelper.ArrowPrefab = GameObject.Instantiate(__instance.Buttons[0]);
-                VentHelper.ArrowPrefab.transform.SetParent(AmongUsClient.Instance.transform);
-            }
             VentHelper ventHelper = __instance.gameObject.AddComponent<VentHelper>();
             ventHelper.vent = __instance;
+            ventHelper.ArrowPrefab = GameObject.Instantiate(__instance.Buttons[0]);
+            ventHelper.ArrowPrefab.transform.SetParent(__instance.transform);
+            VentHelper.ShipVents.Add(__instance, ventHelper);
             string shipName = ShipStatus.Instance.GetType().FullName;
             ConfigManager.ShipData ship;
             if (!ConfigManager.Data.Ships.TryGetValue(shipName, out ship))
@@ -92,6 +91,20 @@ namespace BetterVents.Patches
             couldUse = true;
             canUse = num <= __instance.UsableDistance && !PhysicsHelpers.AnythingBetween(@object.Collider, center, position, Constants.ShipOnlyMask, false);
             __result = num;
+            return false;
+        }
+        [HarmonyPatch("NearbyVents", MethodType.Getter)]
+        [HarmonyPrefix]
+        public static bool NearbyVentsPrefix(Vent __instance, ref Il2CppReferenceArray<Vent> __result)
+        {
+            try
+            {
+                __result = (Vent[])__instance.TryGetHelper().Vents.ToArray();
+            }
+            catch
+            {
+                __result = new Vent[0];
+            }
             return false;
         }
         [HarmonyPatch("SetButtons")]

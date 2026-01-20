@@ -10,11 +10,17 @@ namespace BetterVents.Components
 {
     internal class VentHelper : MonoBehaviour
     {
-        public static ButtonBehavior ArrowPrefab;
+        public static Dictionary<Vent, VentHelper> ShipVents = new Dictionary<Vent, VentHelper>();
+        public ButtonBehavior ArrowPrefab;
         public List<Vent> Vents = new List<Vent>();
         public Vent vent;
+        public PassiveButton MapButton;
         public void Start()
         {
+            foreach (ButtonBehavior buttonBehavior in vent.Buttons)
+            {
+                GameObject.Destroy(buttonBehavior.gameObject);
+            }
             List<ButtonBehavior> buttons = new List<ButtonBehavior>();
             List<GameObject> cleaningIndicators = new List<GameObject>();
             foreach (Vent vent in Vents)

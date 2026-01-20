@@ -32,6 +32,7 @@ namespace BetterMods
             Logger = Log;
             ClassInjector.RegisterTypeInIl2Cpp<VentButtomComp>();
             ClassInjector.RegisterTypeInIl2Cpp<VentHelper>();
+            ClassInjector.RegisterTypeInIl2Cpp<MapVentButtonComp>();
             Helpers.LoadAssets();
             ConfigManager.Initialize(Config);
             new Harmony("BetterMods.gg").PatchAll();

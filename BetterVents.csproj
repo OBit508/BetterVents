@@ -17,12 +17,15 @@
     <Compile Include="BepInEx\BepInAutoPluginAttribute.cs" />
     <Compile Include="BepInEx\Preloader\Core\Patching\PatcherAutoPluginAttribute.cs" />
     <Compile Include="BetterVentsPlugin.cs" />
+    <Compile Include="Components\MapVentButtonComp.cs" />
     <Compile Include="Components\VentButtomComp.cs" />
     <Compile Include="Components\VentHelper.cs" />
     <Compile Include="ConfigManager.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="Patches\HudManagerPatch.cs" />
     <Compile Include="Patches\MapBehaviourPatch.cs" />
+    <Compile Include="Patches\PingTrackerPatch.cs" />
+    <Compile Include="Patches\ShipStatusPatch.cs" />
     <Compile Include="Patches\VentPatch.cs" />
     <Compile Include="System\Runtime\CompilerServices\RefSafetyRulesAttribute.cs" />
   </ItemGroup>

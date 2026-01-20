@@ -14,19 +14,22 @@ namespace BetterVents
 {
     internal static class ConfigManager
     {
+        private static Color ventColor;
         public static string DataPath = Path.Combine(Application.dataPath, "BetterVentsData");
         public static BetterVentsData Data;
-        public static Color VentColor;
+        public static ConfigEntry<bool> UseRGB;
+        public static Color VentColor => UseRGB.Value ? new Color(Mathf.Sin(Time.time * 2f) * 0.5f + 0.5f, Mathf.Sin(Time.time * 2f + 2f) * 0.5f + 0.5f, Mathf.Sin(Time.time * 2f + 4f) * 0.5f + 0.5f, 1f) : ventColor;
         public static void Initialize(ConfigFile config)
         {
             if (ColorUtility.TryParseHtmlString(config.Bind("Configurations", "Vent Color (HEX)", "#006eff").Value, out Color c))
             {
-                VentColor = c;
+                ventColor = c;
             }
             else
             {
-                VentColor = new Color32(0, 110, 255, byte.MaxValue);
+                ventColor = new Color32(0, 110, 255, byte.MaxValue);
             }
+            UseRGB = config.Bind("Configurations", "Use Rainbow", false);
             if (File.Exists(DataPath))
             {
                 Data = JsonSerializer.Deserialize<BetterVentsData>(File.ReadAllText(DataPath));
