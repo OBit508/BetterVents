@@ -22,7 +22,7 @@ using UnityEngine;
 namespace BetterMods
 {
 	[BepInProcess("Among Us.exe")]
-	[BepInPlugin("BetterVents", "BetterVents", "0.1.0")]
+	[BepInPlugin("BetterVents", "BetterVents", "0.2.0")]
     public class BetterVentsPlugin : BasePlugin
     {
         public static Assembly Assembly = Assembly.GetExecutingAssembly();

@@ -26,12 +26,11 @@ namespace BetterVents.Patches
             ventHelper.ArrowPrefab = GameObject.Instantiate(__instance.Buttons[0]);
             ventHelper.ArrowPrefab.transform.SetParent(__instance.transform);
             VentHelper.ShipVents.Add(__instance, ventHelper);
-            string shipName = ShipStatus.Instance.GetType().FullName;
             ConfigManager.ShipData ship;
-            if (!ConfigManager.Data.Ships.TryGetValue(shipName, out ship))
+            if (!ConfigManager.Data.Ships.TryGetValue(ShipStatus.Instance.name, out ship))
             {
                 ship = new ConfigManager.ShipData() { Vents = new Dictionary<string, ConfigManager.VentData>() };
-                ConfigManager.Data.Ships.Add(shipName, ship);
+                ConfigManager.Data.Ships.Add(ShipStatus.Instance.name, ship);
             }
             ConfigManager.VentData vent;
             if (!ship.Vents.TryGetValue(__instance.name, out vent))

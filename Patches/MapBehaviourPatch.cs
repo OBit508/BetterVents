@@ -102,13 +102,13 @@ namespace BetterVents.Patches
                             if (!Selected.current.Vents.Contains(vent))
                             {
                                 Selected.current.Vents.Add(vent);
-                                ConfigManager.Data.Ships[ShipStatus.Instance.GetType().FullName].Vents[Selected.current.vent.name].Vents.Add(vent.name);
+                                ConfigManager.Data.Ships[ShipStatus.Instance.name].Vents[Selected.current.vent.name].Vents.Add(vent.name);
                                 ConfigManager.Update();
                             }
                             else
                             {
                                 Selected.current.Vents.Remove(vent);
-                                ConfigManager.Data.Ships[ShipStatus.Instance.GetType().FullName].Vents[Selected.current.vent.name].Vents.Remove(vent.name);
+                                ConfigManager.Data.Ships[ShipStatus.Instance.name].Vents[Selected.current.vent.name].Vents.Remove(vent.name);
                                 ConfigManager.Update();
                             }
                         }
