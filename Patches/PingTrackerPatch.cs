@@ -12,7 +12,8 @@ namespace BetterVents.Patches
     {
         public static void Postfix(PingTracker __instance)
         {
-            __instance.text.text += "\nBetterVents: https://github.com/OBit508/BetterVents";
+            __instance.text.alignment = TMPro.TextAlignmentOptions.Center;
+            __instance.text.text += "\n<size=1.5><color=#006eff>BetterVents: https://github.com/OBit508/BetterVents</color></size>";
         }
     }
 }

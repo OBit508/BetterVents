@@ -22,7 +22,7 @@ using UnityEngine;
 namespace BetterMods
 {
 	[BepInProcess("Among Us.exe")]
-	[BepInPlugin("BetterMods.gg", "BetterMods", "0.1.0")]
+	[BepInPlugin("BetterVents", "BetterVents", "0.1.0")]
     public class BetterVentsPlugin : BasePlugin
     {
         public static Assembly Assembly = Assembly.GetExecutingAssembly();
@@ -35,7 +35,7 @@ namespace BetterMods
             ClassInjector.RegisterTypeInIl2Cpp<MapVentButtonComp>();
             Helpers.LoadAssets();
             ConfigManager.Initialize(Config);
-            new Harmony("BetterMods.gg").PatchAll();
+            new Harmony("BetterVents").PatchAll();
         }
     }
 }
