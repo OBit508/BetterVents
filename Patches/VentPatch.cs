@@ -110,7 +110,7 @@ namespace BetterVents.Patches
         [HarmonyPatch("SetButtons")]
         [HarmonyPrefix]
         public static bool SetButtonsPrefix(Vent __instance, [HarmonyArgument(0)] bool enabled)
-        {
+        {//
             foreach (ButtonBehavior buttonBehavior in __instance.Buttons)
             {
                 buttonBehavior.gameObject.SetActive(enabled);
