@@ -111,6 +111,10 @@ namespace BetterVents.Patches
         [HarmonyPrefix]
         public static bool SetButtonsPrefix(Vent __instance, [HarmonyArgument(0)] bool enabled)
         {
+            foreach (ButtonBehavior buttonBehavior in __instance.Buttons)
+            {
+                buttonBehavior.gameObject.SetActive(enabled);
+            }
             if (enabled)
             {
                 List<(Vent vent, ButtonBehavior button, GameObject clean)> entries = new List<(Vent vent, ButtonBehavior button, GameObject clean)>();
@@ -127,7 +131,6 @@ namespace BetterVents.Patches
                 {
                     (Vent vent, ButtonBehavior button, GameObject clean) e = entries[i];
                     ButtonBehavior buttonBehavior = e.button;
-                    buttonBehavior.gameObject.SetActive(true);
                     __instance.ToggleNeighborVentBeingCleaned(ventilationSystem.IsVentCurrentlyBeingCleaned(e.vent.Id), e.button, e.clean);
                     Vector3 vector2 = (e.vent.transform.position - __instance.transform.position).normalized * (0.7f + __instance.spreadShift);
                     vector2.x *= Mathf.Sign(ShipStatus.Instance.transform.localScale.x);
@@ -142,13 +145,6 @@ namespace BetterVents.Patches
                     buttonBehavior.transform.localPosition = vector2;
                     buttonBehavior.transform.LookAt2d(e.vent.transform);
                     buttonBehavior.transform.Rotate(0f, 0f, offsetIndex * __instance.spreadAmount);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < __instance.Buttons.Count; i++)
-                {
-                    __instance.Buttons[i].gameObject.SetActive(false);
                 }
             }
             return false;
