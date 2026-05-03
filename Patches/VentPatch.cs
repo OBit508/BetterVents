@@ -53,7 +53,6 @@ namespace BetterVents.Patches
                     ventHelper.Vents.Add(ve);
                 }
             }
-            ConfigManager.Update();
         }
         [HarmonyPatch("SetOutline")]
         [HarmonyPrefix]

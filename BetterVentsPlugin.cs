@@ -33,9 +33,11 @@ namespace BetterMods
             ClassInjector.RegisterTypeInIl2Cpp<VentButtomComp>();
             ClassInjector.RegisterTypeInIl2Cpp<VentHelper>();
             ClassInjector.RegisterTypeInIl2Cpp<MapVentButtonComp>();
+            ClassInjector.RegisterTypeInIl2Cpp<ConfigManager>();
             Helpers.LoadAssets();
             ConfigManager.Initialize(Config);
             new Harmony("BetterVents").PatchAll();
+            AddComponent<ConfigManager>();
         }
     }
 }

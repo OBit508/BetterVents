@@ -103,13 +103,11 @@ namespace BetterVents.Patches
                             {
                                 Selected.current.Vents.Add(vent);
                                 ConfigManager.Data.Ships[ShipStatus.Instance.name].Vents[Selected.current.vent.name].Vents.Add(vent.name);
-                                ConfigManager.Update();
                             }
                             else
                             {
                                 Selected.current.Vents.Remove(vent);
                                 ConfigManager.Data.Ships[ShipStatus.Instance.name].Vents[Selected.current.vent.name].Vents.Remove(vent.name);
-                                ConfigManager.Update();
                             }
                         }
                         ButtonRolloverHandler b = Selected.transform.parent.GetComponent<ButtonRolloverHandler>();

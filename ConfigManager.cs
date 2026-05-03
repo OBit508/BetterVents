@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace BetterVents
 {
-    internal static class ConfigManager
+    internal class ConfigManager : MonoBehaviour
     {
         private static Color ventColor;
         public static string DataPath = Path.Combine(Application.dataPath, "BetterVentsData");
@@ -41,7 +41,7 @@ namespace BetterVents
             };
             File.WriteAllText(DataPath, JsonSerializer.Serialize(Data));
         }
-        public static void Update()
+        public void OnApplicationQuit()
         {
             File.WriteAllText(DataPath, JsonSerializer.Serialize(Data));
         }
